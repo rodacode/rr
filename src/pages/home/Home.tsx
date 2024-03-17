@@ -45,7 +45,6 @@ const Home = () => {
     try {
       setIsLoading(true);
       const response = await fetchPokemons(page, rowsPerPage);
-      console.log("pokemonsss___", response);
       const sortedResult = sortPokemonsAlphabetical(response?.results);
       setPokemons(sortedResult as unknown as any[]);
       setFilteredPokemons(sortedResult as unknown as any[]);

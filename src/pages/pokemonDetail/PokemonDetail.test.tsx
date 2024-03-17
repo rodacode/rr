@@ -59,7 +59,8 @@ describe("PokemonDetail component", () => {
     render(<PokemonDetail />);
     await screen.findByText("BULBASAUR");
 
-    await fireEvent.click(await screen.findByTestId("delete_button"));
+    const buttonRef = await screen.findAllByTestId("delete_button");
+    await fireEvent.click(buttonRef[0]);
     expect(screen.queryByText("move1")).not.toBeInTheDocument();
   });
 });

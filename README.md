@@ -1,46 +1,43 @@
-# Getting Started with Create React App
+# Pokemon App por Nicolas Hardmeier
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Creada con [Create React App](https://github.com/facebook/create-react-app).
+El test menciona ordenar los pokemons alfabeticamente, por lo que he investigado en la documentación de la API no cuenta con un parametro para ordenar alfabeticamente y es nua API paginada por lo que estoy ordenando alfabeticamente cada página.
+Se podría hacer un fetch de todos los pokemones y luego ordenarlos pero no estaba seguro de si era lo requerido y sería unu poco sobre ingenieria si no es lo buscado (Toco hacer la prueba un fin de semana por lo que no pregunte esta duda para poder entregarla el lunes como se me pidio).
+Los estilos claramente podrían mejorarse más.
 
-## Available Scripts
 
-In the project directory, you can run:
+### Instalar dependencias
 
-### `npm start`
+Ejecutar
+ ```bash
+npm i
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Entorno de desarrollo
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Ejecutar
+ ```bash
+npm start
+```
 
-### `npm test`
+Se ejjecuta la aplicación en el entorno de desarrollo.\
+Abrir en el navegador [http://localhost:3000](http://localhost:3000).
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Test
 
-### `npm run build`
+Ejecutar
+ ```bash
+npm run test
+```
+### Modo prodcción
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Ejecutar
+ ```bash
+npm run build
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Por hacer:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+[ ] Mejorar estilos.
+[ ] Agregar más unit tests de casos en concreto, si no  hay pokemones, si no tiene moves o abilities.
+[ ] Agregar React Query para cachear respuestas.

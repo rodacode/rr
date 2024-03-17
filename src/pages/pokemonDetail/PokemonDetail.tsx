@@ -16,13 +16,13 @@ const PokemonDetail = () => {
   const [pokemon, setPokemon] = useState<PokemonDetailType>();
   const [abilities, setAbilities] = useState<any>([]);
   const [moves, setMoves] = useState<any>([]);
+  const [forms, setForms] = useState<any>([]);
   const { id } = useParams();
 
   const getPokemon = useCallback(
     async (id: string | undefined) => {
       try {
         const response = await fetchPokemonDetail(id);
-        console.log("pokemon detail___", response);
         setPokemon(response);
         const abilitiesToDisplay = response?.abilities.filter(
           (ability: any) => {
@@ -31,6 +31,9 @@ const PokemonDetail = () => {
         );
         setAbilities(abilitiesToDisplay);
         setMoves(sortMovesAlphabetical(response?.moves));
+        const formsResponse = await fetch(response?.forms?.[0].url);
+        const formsParsed = await formsResponse.json();
+        setForms(formsParsed);
       } catch (e) {
         console.log("Error fetching Pokemons", e);
       }
@@ -71,6 +74,25 @@ const PokemonDetail = () => {
           ))
         ) : (
           <span>No abilities found</span>
+        )}
+      </Box>
+
+      <Box sx={sectionContainerStyles}>
+        <Typography variant="h3" gutterBottom>
+          Forms
+        </Typography>
+
+        {forms ? (
+          <>
+            <Typography variant="body1" gutterBottom>
+              id: {forms?.id}
+            </Typography>
+            <Typography variant="body1" gutterBottom>
+              Is battle only: {String(forms?.is_battle_only)}
+            </Typography>
+          </>
+        ) : (
+          <span>No forms found</span>
         )}
       </Box>
       <Box sx={sectionContainerStyles}>
