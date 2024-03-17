@@ -4,6 +4,7 @@ import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import { useParams } from "react-router-dom";
 import { fetchPokemonDetail } from "../../utils/fetchPokemonDetail";
 import { sortMovesAlphabetical } from "../../utils/sortMovesAlphabetical";
+import Loading from "../../components/loading/Loading";
 import { PokemonDetailType } from "../../types";
 import {
   mainContainerDetailStyles,
@@ -17,11 +18,13 @@ const PokemonDetail = () => {
   const [abilities, setAbilities] = useState<any>([]);
   const [moves, setMoves] = useState<any>([]);
   const [forms, setForms] = useState<any>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const { id } = useParams();
 
   const getPokemon = useCallback(
     async (id: string | undefined) => {
       try {
+        setIsLoading(true);
         const response = await fetchPokemonDetail(id);
         setPokemon(response);
         const abilitiesToDisplay = response?.abilities.filter(
@@ -34,6 +37,7 @@ const PokemonDetail = () => {
         const formsResponse = await fetch(response?.forms?.[0].url);
         const formsParsed = await formsResponse.json();
         setForms(formsParsed);
+        setIsLoading(false);
       } catch (e) {
         console.log("Error fetching Pokemons", e);
       }
@@ -48,6 +52,11 @@ const PokemonDetail = () => {
   useEffect(() => {
     getPokemon(id);
   }, [getPokemon, id]);
+
+  if (isLoading) {
+    return <Loading />;
+  }
+
   return (
     <Box sx={mainContainerDetailStyles}>
       <Typography variant="h2" gutterBottom>
